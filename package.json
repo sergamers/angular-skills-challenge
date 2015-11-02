@@ -1,0 +1,17 @@
+{
+  "name": "angular-skill-test",
+  "version": "1.0.0",
+  "description": "Тестовое задание на знание ангуляра",
+  "main": "index.js",
+  "dependencies": {
+    "node-static": "^0.7.7",
+    "lodash": "^3.10.1",
+    "simple-api": "^0.1.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "vlad.dovzhenko@gmail.com",
+  "license": "ISC"
+}
