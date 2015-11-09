@@ -1,12 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="todos">
   <head>
     <meta charset="utf-8">
     <title>SUPERCHARGED TODO LIST</title>
-    <script src="bower_components/angular/angular.js"></script>
+    <script src="scripts/jquery-1.11.3.min.js"></script>
+    <script src="scripts/angular.min.js"></script>
     <script src="scripts/app-module.js"></script>
+    <link rel="stylesheet" href="css/style.css">
   </head>
-  <body ng-app="todos">
+<body ng-controller="TodoList">
+<h1>Задачи</h1>
 
-  </body>
+<table class="tasks">
+	<thead>	
+		<tr>
+			<th>
+				<span>№</span>
+			</th>
+			<th>
+				<span>Статус</span>
+			</th>
+			<th colspan="2">
+				<span>Содержание</span>
+			</th>					
+		</tr>	
+	</thead>
+	<tbody>
+		<tr ng-repeat="task in tasks">
+			<td><div class="num">{{$index+1}}</div></td>
+			<td>
+				{{allTags[task.tag]}}
+				<b ng-if="!allTags[task.tag]">ID {{task.tag}} не найден в доступных тегах</b>
+			</td>
+			<td>{{task.content}}</td>
+			<td><span class="delete" ng-click="deleteTask($index)"></span></td>
+		</tr>
+		<tr>
+			<td colspan="4"> <div class="addTask">Добавить задачу</div> </td>
+		</tr>
+	</tbody>
+</table>
+
+
+
+	<h2>Теги</h2>
+	
+	<div ng-repeat="tag in allTags">
+		{{tag}}	
+	</div>	
+
+	<h2>Задачи</h2>
+	<div ng-repeat="task in tasks">
+		{{allTags[task.tag]}} {{task.content}} {{task}}
+		<hr>
+	</div>
+</body>
 </html>
