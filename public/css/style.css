@@ -3,6 +3,7 @@ h1{
 }
 
 .tasks{
+	background-color: #fff;
 	width: 500px;	
 	border-collapse: collapse;
 	margin: auto;
@@ -75,6 +76,8 @@ h1{
 	border-radius: 5px;
 	border: 1px solid #D0DBE0;
 	color: #FFF;
+	-webkit-transition: box-shadow 0.2s;
+	-moz-transition: box-shadow 0.2s;
 	transition: box-shadow 0.2s;
 }
 
@@ -82,4 +85,135 @@ h1{
 	box-shadow: 0px 1px 8px 1px rgba(50, 50, 50, 0.65);
 	border: none;
 	padding: 6px;
+}
+
+
+.cd-popup {
+	position: fixed;
+    left: 0;
+    top: 0;
+    height: 0%;
+    width: 100%;
+    background-color: rgba(94, 110, 141, 0.9);
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;  
+  	-webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s, height 0s 0.3s;
+    -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s, height 0s 0.3s;
+    transition: opacity 0.3s 0s, visibility 0s 0.3s, height 0s 0.3s;
+}
+
+.cd-popup.active{
+	height: 100%;
+    opacity: 1;
+    visibility: visible;
+    -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
+    -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
+    transition: opacity 0.3s 0s, visibility 0s 0s;
+}
+
+.cd-popup .window{	
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    margin: 4em auto;
+    background: #FFF;
+    border-radius: .25em .25em .4em .4em;
+    text-align: center;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    -webkit-transform: translateY(-40px);
+    -moz-transform: translateY(-40px);
+    -ms-transform: translateY(-40px);
+    -o-transform: translateY(-40px);
+    transform: translateY(-40px);
+    -webkit-backface-visibility: hidden;
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    transition-property: transform;
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+}
+
+.cd-popup.active .window {
+    -webkit-transform: translateY(0);
+    -moz-transform: translateY(0);
+    -ms-transform: translateY(0);
+    -o-transform: translateY(0);
+    transform: translateY(0);
+}
+
+.cd-popup .window p{
+	padding: 3em 1em;
+}
+
+.cd-popup .window .close{
+    position: absolute;
+    top: 8px;
+    right: 8px;
+	width: 15px;
+	height: 15px;
+    cursor: pointer;
+}
+
+.cd-popup .window .close:before{
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    transform: rotate(45deg);
+    left: 1px;
+}
+
+.cd-popup .window .close:after {
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    right: 0px;
+}
+
+.cd-popup .window .close:before,
+.cd-popup .window .close:after{
+    content: '';
+    position: absolute;
+    top: 7px;
+    width: 14px;
+    height: 3px;
+    background-color: #8f9cb5;
+}
+
+.cd-popup .window .button{
+	overflow: hidden;
+}
+
+.cd-popup .window .button span{
+	float:left;
+	width: 50%;
+    display: block;
+    height: 60px;
+    line-height: 60px;
+    text-transform: uppercase;
+    color: #FFF;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.cd-popup .window .button span:first-child{
+    background: #fc7169;
+    border-radius: 0 0 0 .25em;
+}
+
+.cd-popup .window .button span:first-child:hover {
+    background-color: #fc8982;
+}
+
+.cd-popup .window .button span:last-child{
+    background: #b6bece;
+    border-radius: 0 0 .25em 0;
+}
+
+.cd-popup .window .button span:last-child:hover {
+    background-color: #c5ccd8;
 }

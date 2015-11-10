@@ -3,12 +3,25 @@
   <head>
     <meta charset="utf-8">
     <title>SUPERCHARGED TODO LIST</title>
-    <script src="scripts/jquery-1.11.3.min.js"></script>
+    <!-- <script src="scripts/jquery-1.11.3.min.js"></script> -->
     <script src="scripts/angular.min.js"></script>
     <script src="scripts/app-module.js"></script>
     <link rel="stylesheet" href="css/style.css">
   </head>
 <body ng-controller="TodoList">
+
+<div class="cd-popup animate ng-class: {active : showFon}" ng-click="clickToFon($event)">
+	<div class="window">
+		<span class="close" ng-click="showFon=false"></span>
+		<p>{{alertMsg}}</p>
+		<div class="button">
+			<span ng-click="deleteTask()">Удалить</span>
+			<span ng-click="showFon=false">Отмена</span>
+		</div>
+	</div>
+</div>
+
+
 <h1>Задачи</h1>
 
 <table class="tasks">
@@ -33,10 +46,10 @@
 				<b ng-if="!allTags[task.tag]">ID {{task.tag}} не найден в доступных тегах</b>
 			</td>
 			<td>{{task.content}}</td>
-			<td><span class="delete" ng-click="deleteTask($index)"></span></td>
+			<td><span class="delete" ng-click="deleteTaskAlert($index,  task.id)"></span></td>
 		</tr>
 		<tr>
-			<td colspan="4"> <div class="addTask">Добавить задачу</div> </td>
+			<td colspan="4"> <div class="addTask" ng-click="showFon=true">Добавить задачу</div> </td>
 		</tr>
 	</tbody>
 </table>

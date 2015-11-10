@@ -1,15 +1,22 @@
 'use strict'
 
-
 var app = angular.module('todos', []);
 
-app.controller("TodoList", function($scope, $http){
+app.controller("TodoList", function($scope, $http, $window){
+	$scope.tasks = []; // Все задачиж
+	$scope.showFon = false; // Отображение фона
+	// $scope.deleteIndex - Какой index надо удалить
+	// $scope.deleteId - Какой id надо удалить
+	// $scope.alertMsg - Сообщение в popup окне
+	// $scope.allTags - Все теги
+
+	// Получаем теги
 	$http.get('/api/v0/todos/tags').success(function(request){
 		$scope.allTags = request.items;
 	});					
 	
-	$scope.tasks = [];
 
+	// Получаем все задачи
 	var getTask = function(hash){		
 	 	var url = '/api/v0/todos/items';
 
@@ -28,9 +35,43 @@ app.controller("TodoList", function($scope, $http){
 	 	});			
 	}	
 
-	$scope.deleteTask = function(id){
-		$scope.tasks.splice(id, 1);
+	// Событие по кнопке - удалить задачу (папка)
+	$scope.deleteTaskAlert = function($index, id){
+		$scope.showFon = true;
+		$scope.alertMsg = 'Вы уверены, что хотите удалить задачу № '+($index+1)+' ?';		
+		$scope.deleteIndex = $index;
+		$scope.deleteId = id;		
 	}
 
-	getTask();
+	// Удаляем задачу
+	$scope.deleteTask = function(){
+		$scope.tasks.splice($scope.deleteIndex, 1);
+		
+		$http.delete('/api/v0/todos/item/'+$scope.deleteId).success(function(request){			
+			$scope.showFon = false;			
+		});
+	};
+
+	// Нажатие кнопки esc в момент открытия Popup
+	$scope.$watch("showFon", function(newValue, oldValue){
+		if(newValue == true){
+			angular.element($window).bind("keydown", function(e){
+				if(e.keyCode == 27){
+					$scope.showFon = false;	
+					$scope.$digest();
+				}
+			});
+		}else{
+			angular.element($window).unbind("keydown");
+		}
+	});
+
+	// Нажатие на фон popup окна
+	$scope.clickToFon = function(e){
+		if(e.target == e.currentTarget){
+			$scope.showFon = false;			
+		}
+	};	
+
+	getTask();	
 });
