@@ -11,7 +11,7 @@
 <body ng-controller="TodoList">
 
 <div class="cd-popup animate ng-class: {active : showFon}" ng-click="clickToFon($event)">
-	<div class="window">
+	<div class="window" ng-show="alert===1">
 		<span class="close" ng-click="showFon=false"></span>
 		<p>{{alertMsg}}</p>
 		<div class="button">
@@ -19,6 +19,19 @@
 			<span ng-click="showFon=false">Отмена</span>
 		</div>
 	</div>
+
+	<form name="newTask" class="window" ng-show="alert===2" novalidate>
+		<span class="close" ng-click="showFon=false"></span>
+		<p class="title">{{alertMsg}}</p>
+		<select ng-model="task.tag" ng-options="k as tag for (k, tag) in allTags" required>
+			<option value="">Статус задачи</option>		
+		</select>
+		<textarea ng-model="task.content" rows="10" placeholder="Введите описание задачи" required></textarea>
+		<div class="button">
+			<button ng-click="addTask(task)" class="green ng-class: {gray : newTask.$invalid}" ng-disabled="newTask.$invalid">Добавить</button>
+			<span ng-click="showFon=false">Отмена</span>
+		</div>
+	</form>	
 </div>
 
 
@@ -49,23 +62,9 @@
 			<td><span class="delete" ng-click="deleteTaskAlert($index,  task.id)"></span></td>
 		</tr>
 		<tr>
-			<td colspan="4"> <div class="addTask" ng-click="showFon=true">Добавить задачу</div> </td>
+			<td colspan="4"> <div class="addTask" ng-click="addTaskAlert();">Добавить задачу</div> </td>
 		</tr>
 	</tbody>
 </table>
-
-
-
-	<h2>Теги</h2>
-	
-	<div ng-repeat="tag in allTags">
-		{{tag}}	
-	</div>	
-
-	<h2>Задачи</h2>
-	<div ng-repeat="task in tasks">
-		{{allTags[task.tag]}} {{task.content}} {{task}}
-		<hr>
-	</div>
 </body>
 </html>

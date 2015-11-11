@@ -147,6 +147,13 @@ h1{
 	padding: 3em 1em;
 }
 
+.cd-popup .window .title{
+	padding: 20px;
+    font: 12px Verdana;
+    text-transform: uppercase;
+    color: #8f9cb5;
+}
+
 .cd-popup .window .close{
     position: absolute;
     top: 8px;
@@ -188,7 +195,8 @@ h1{
 	overflow: hidden;
 }
 
-.cd-popup .window .button span{
+.cd-popup .window .button > *{
+	border: none;
 	float:left;
 	width: 50%;
     display: block;
@@ -200,20 +208,43 @@ h1{
     transition: background-color 0.2s;
 }
 
-.cd-popup .window .button span:first-child{
+.cd-popup .window .button > *:first-child{
     background: #fc7169;
     border-radius: 0 0 0 .25em;
 }
 
-.cd-popup .window .button span:first-child:hover {
+.cd-popup .window .button > *:first-child:hover {
     background-color: #fc8982;
 }
 
-.cd-popup .window .button span:last-child{
+.cd-popup .window .button > *:last-child{
     background: #b6bece;
     border-radius: 0 0 .25em 0;
 }
 
-.cd-popup .window .button span:last-child:hover {
+.cd-popup .window .button > *:last-child:hover {
     background-color: #c5ccd8;
+}
+
+.cd-popup .window .button > *.green{
+	background-color: #12D270;
+}
+
+.cd-popup .window .button > *.green:hover{
+	background-color: #18EA7F;
+}
+
+.cd-popup .window select,
+.cd-popup .window textarea{
+    display: block;
+    margin: 10px auto;
+    padding: 5px;
+    border-radius: 5px;
+    width: 90%;
+}
+
+.cd-popup .window .button > *.gray,
+.cd-popup .window .button > *.gray:hover{
+	background-color: #7B7B7B;	
+	cursor: default;
 }
